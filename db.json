@@ -1,0 +1,34 @@
+{
+  "persons": [
+    {
+      "name": "Алексеев",
+      "surname": "Даниил",
+      "patronymic": "Владиславович",
+      "phone": "043987264373",
+      "email": "dapa08@mail.ru",
+      "birthday": "2001-03-08",
+      "department": 1,
+      "id": 5
+    },
+    {
+      "name": "Гасанов",
+      "surname": "Сунгур",
+      "patronymic": "Юсупович",
+      "phone": "6709548372",
+      "email": "sungur@mail.ru",
+      "birthday": "2020-12-20",
+      "department": 3,
+      "id": 7
+    },
+    {
+      "name": "Цалапов",
+      "surname": "Александр",
+      "patronymic": "Юрьевич",
+      "phone": "56849302948",
+      "email": "sanya@mail.ru",
+      "birthday": "2007-02-19",
+      "department": 3,
+      "id": 8
+    }
+  ]
+}

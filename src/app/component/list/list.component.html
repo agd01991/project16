@@ -1,0 +1,70 @@
+<hr>
+<h4 class="d-flex justify-content-center mt-5 mb-5">Поиск сотрудников</h4>
+<hr>
+<div class="row" style="justify-content: center;">
+    <div class="col-12 m-2">
+        <input type="text" class="form-control" [(ngModel)]="searchStr" placeholder="Искать по ФИО:">
+        <button type="button" class="btn btn-warning mr-2 mt-2" (click)="sortId()">Фильтр по id</button>
+        <button type="button" class="btn btn-warning mt-2" (click)="sortBth()">Фильтр по дате рождения</button>
+      </div>
+            <div class="card text-black bg-light mb-3 m-3" style="max-width: 18rem;" *ngFor="let person of persons | search: searchStr">
+                    <div class="card-header">ID:{{ person.id }}</div>
+                    <div class="card-body">
+                      <h5 class="card-title">{{ person.name }} {{person.surname}} {{ person.patronymic }}</h5>
+                      <p class="card-text">Телефон: {{ person.phone }}</p>
+                      <p class="card-text">Email: {{ person.email }}</p>
+                      <p class="card-text">Дата рождения: {{ person.birthday }}</p>
+                      <p class="card-text" *ngIf="person.department === 0">Отдел: Data Science</p>
+                      <p class="card-text" *ngIf="person.department === 1">Отдел: IOS-разработка</p>
+                      <p class="card-text" *ngIf="person.department === 2">Отдел: Android-разработка</p>
+                      <p class="card-text" *ngIf="person.department === 3">Отдел: Веб-разработка</p>
+                    </div>
+                    <div class="col-6"><button type="button" class="btn btn-info m-2" (click)="OnEdit(person.id)">Редактировать</button></div>
+                    <div class="col-6"><button type="button" class="btn btn-danger m-2" (click)="OnDelete(person.id)">Удалить</button></div>
+            </div>
+</div>
+<div class="mymodalout" *ngIf="check">
+    <div class="mymodal" >
+        <form [formGroup]="editPersonsForm">
+            <div class="form-group">
+                <label for="name" class="col-form-label">Имя:</label>
+                <input formControlName="name" type="text" class="form-control" placeholder="Даниил" id="name" [(ngModel)]="name" name="name">
+            </div>
+            <div class="form-group">
+                <label for="surname" class="col-form-label">Фамилия:</label>
+                <input formControlName="surname" type="text" class="form-control" placeholder="Фамилия" id="surname" [(ngModel)]="surname" name="surname">
+            </div>
+            <div class="form-group">
+                <label for="otch" class="col-form-label">Отчество:</label>
+                <input formControlName="patronymic" type="text" class="form-control"  placeholder="Отчество"id="otch" [(ngModel)]="otch" name="otch">
+            </div>
+            <div class="form-group">
+                <label for="phone" class="col-form-label">Телефон:</label>
+                <input formControlName="phone" type="text" class="form-control" id="phone" [(ngModel)]="phone" name="phone">
+            </div>
+            <div class="form-group">
+                <label for="email" class="col-form-label">Email:</label>
+                <input formControlName="email" type="text" class="form-control" id="email" placeholder="mail@mail.ru" [(ngModel)]="email" name="email">
+            </div>
+            <div class="form-group">
+              <label for="bth" class="col-form-label">Дата рождения:</label>
+              <input formControlName="birthday" type="date" class="form-control" id="bth" [(ngModel)]="bth" name="bth">
+            </div>
+            <div class="form-group">
+              <label for="department">Выбор отдела</label>
+              <select formControlName="department" class="form-control" id="department" [(ngModel)]="type" name="type">
+                <option [ngValue]="myDepartmentType.data">IT отдел</option>
+                <option [ngValue]="myDepartmentType.ios">Отдел продаж</option>
+                <option [ngValue]="myDepartmentType.android">Отдел доставки</option>
+                <option [ngValue]="myDepartmentType.web">Юридический отдел</option>
+              </select>
+            </div>
+              </form>
+
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="editCheck()">Закрыть</button>
+              <button type="button" [disabled]="editPersonsForm.invalid" class="btn btn-info" (click)="saveChanges()">Сохранить Изменения</button>
+            </div>
+</div>
+</div>
+
